@@ -9,6 +9,6 @@ public interface IStack {
     public int length();
     public Object peek();
     public void push(Object x)throws Exception;
-    public Object pop();
+    public Object pop() throws Exception;
 
 }

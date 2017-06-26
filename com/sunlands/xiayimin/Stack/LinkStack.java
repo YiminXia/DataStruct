@@ -21,21 +21,42 @@ public class LinkStack implements IStack{
     //求链栈的长度
     @Override
     public int length() {
-        return 0;
+        Node p=top;
+        int length=0;
+        while(p!=null){
+            p=p.next;
+            length++;
+        }
+        return length;
     }
 
     @Override
     public Object peek() {
-        return null;
+        if(!isEmpty()){
+            return top.data;
+        }
+        else{
+            return null;
+        }
     }
-
+    //入栈
     @Override
     public void push(Object x) throws Exception {
+        Node p=new Node(x);
+        p.next=top;
+        top=p;
 
     }
-
+   //出栈
     @Override
     public Object pop() {
-        return null;
+         if(isEmpty()){
+             return null;
+         }
+         else{
+             Node p=top;
+             top=top.next;
+             return p.data;
+         }
     }
 }
