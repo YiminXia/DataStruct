@@ -10,12 +10,110 @@ public class BiTree {
     public BiTree(){     //无参的构造函数，构造一棵空树
         this.root=null;
     }
-    public BiTree(BiTreeNode root){
+    public BiTree(BiTreeNode root){//构造一棵树
         this.root=root;
+    }
+    public void preRootTraverse(BiTreeNode T){
+        if(T!=null){
+            System.out.println(T.data);
+            preRootTraverse(T.lchild);
+            preRootTraverse(T.rchild);
+        }
+    }
+    public void preRootTraverse()throws Exception{
+        BiTreeNode T=root;
+        if(T!=null){
+            LinkStack S=new LinkStack();
+            S.push(T);//根节点入栈
+            while(!S.isEmpty()){//
+                T=(BiTreeNode)S.pop();
+                System.out.print(T.data+" ");
+                while(T!=null){
+                    if(T.lchild!=null){
+                        System.out.print(T.data+" ");
+                    }
+                    if(T.rchild!=null){
+                        S.push(T.rchild);
+                    }
+                    T=T.lchild;
+                }
+            }
+        }
+    }
+    public void inRootTraverse(BiTreeNode T){
+        if(T!=null){
+            inRootTraverse(T.lchild);
+            System.out.println(T.data);
+            inRootTraverse(T.rchild);
+        }
+    }
+    public void inRootTraverse() throws Exception{
+        BiTreeNode T =root;
+        if(T!=null){
+            LinkStack S=new LinkStack();
+            S.push(T);
+            while(!S.isEmpty()){
+                while(S.peek()!=null){
+                    S.push(((BiTreeNode)S.peek()).lchild);
+                }
+                S.pop();//退出空节点
+                if(!S.isEmpty()){
+                    T=(BiTreeNode)S.pop();//
+                    System.out.print(T.data+" ");
+                    S.push(T.rchild);
+                }
+            }
+        }
+    }
+    public void postRootTraverse(BiTreeNode T){
+        if(T!=null){
+            postRootTraverse(T.lchild);
+            postRootTraverse(T.rchild);
+            System.out.println(T.data);
+        }
+    }
+
+    public BiTreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(BiTreeNode root) {
+        this.root = root;
+    }
+
+    public void postRootTraverse()throws Exception{
+        BiTreeNode T=root;
+        if(T!=null){
+            LinkStack S=new LinkStack();
+            S.push(T);
+            Boolean flag;
+            BiTreeNode p=null;
+            while(!S.isEmpty()){
+                while(S.peek()!=null){
+                    S.push(((BiTreeNode)S.peek()).lchild);
+                }
+                S.pop();
+                while(!S.isEmpty()){
+                    T=(BiTreeNode)S.peek();
+                    if(T.rchild==null||T.rchild==p){
+                        System.out.print(T.data+" ");
+                        S.pop();
+                        p=T;
+                        flag=true;
+                    }
+                    else{
+                        S.push(T.rchild);
+                        flag=false;
+                    }
+                    if(!flag){
+                        break;
+
+                    }
+                }
+            }
+        }
     }
 
 
-
-
-
 }
+
