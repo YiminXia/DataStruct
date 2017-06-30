@@ -15,7 +15,7 @@ public class BiTree {
     }
     public void preRootTraverse(BiTreeNode T){
         if(T!=null){
-            System.out.println(T.data);
+            System.out.print(T.data+" ");
             preRootTraverse(T.lchild);
             preRootTraverse(T.rchild);
         }
@@ -23,12 +23,12 @@ public class BiTree {
     public void preRootTraverse()throws Exception{
         BiTreeNode T=root;
         if(T!=null){
-            LinkStack S =new LinkStack();
+            LinkStack S=new LinkStack();
             S.push(T);
             while(!S.isEmpty()){
                 T=(BiTreeNode)S.pop();
                 System.out.print(T.data+" ");
-                while(T!=null){
+                while(T!=null){//容易卡住的地方
                     if(T.lchild!=null){
                         System.out.print(T.lchild.data+" ");
                     }
@@ -38,7 +38,6 @@ public class BiTree {
                     T=T.lchild;
                 }
             }
-
         }
     }
     public void inRootTraverse(BiTreeNode T){
@@ -74,14 +73,6 @@ public class BiTree {
         }
     }
 
-    public BiTreeNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(BiTreeNode root) {
-        this.root = root;
-    }
-
     public void postRootTraverse()throws Exception{
         BiTreeNode T=root;
         if(T!=null){
@@ -113,7 +104,29 @@ public class BiTree {
             }
         }
     }
+    public void levelBiTreeTraverse()throws Exception{
+        BiTreeNode T=root;
+        if(T!=null){
+            LinkQueue Q=new LinkQueue();
+            Q.offer(T);//根节点入队
+            while(!Q.isEmpty()){
+                T=(BiTreeNode)Q.poll();
+                System.out.print(T.data+" ");
+                if(T.lchild!=null){
+                    Q.offer(T.lchild);
+                }
+                if(T.rchild!=null){
+                    Q.offer(T.rchild);
+                }
+            }
+        }
+    }
+    public BiTreeNode getRoot() {
+        return root;
+    }
 
-
+    public void setRoot(BiTreeNode root) {
+        this.root = root;
+    }
 }
 

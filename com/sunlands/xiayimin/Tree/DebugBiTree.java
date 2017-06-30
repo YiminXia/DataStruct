@@ -32,11 +32,17 @@ public class DebugBiTree {
         BiTree biTree =debugBiTree.createBiTree();
         BiTreeNode root = biTree.getRoot();
 
+        biTree.preRootTraverse(biTree.getRoot());
+        System.out.println();
         biTree.preRootTraverse();
         System.out.println();
+        System.out.println("--------------");
         biTree.inRootTraverse();
         System.out.println();
         biTree.postRootTraverse();
+        System.out.println();
+        System.out.println("--------------");
+        biTree.levelBiTreeTraverse();
     }
 
 
