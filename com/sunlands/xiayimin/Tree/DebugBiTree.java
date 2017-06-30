@@ -15,6 +15,18 @@ public class DebugBiTree {
         BiTreeNode a=new BiTreeNode("A",b,c);
         return new BiTree(a);
     }
+
+    /**
+     * @param args
+     * @throws Exception
+     *                                  A
+     *                                 / \
+     *                                B   C
+     *                               / \  /
+     *                              D   E F
+     *                                 /   \
+     *                                G     H
+     */
     public static void main(String[] args)throws Exception{
         DebugBiTree debugBiTree=new DebugBiTree();
         BiTree biTree =debugBiTree.createBiTree();

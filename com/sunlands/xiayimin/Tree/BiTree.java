@@ -23,14 +23,14 @@ public class BiTree {
     public void preRootTraverse()throws Exception{
         BiTreeNode T=root;
         if(T!=null){
-            LinkStack S=new LinkStack();
-            S.push(T);//根节点入栈
-            while(!S.isEmpty()){//
+            LinkStack S =new LinkStack();
+            S.push(T);
+            while(!S.isEmpty()){
                 T=(BiTreeNode)S.pop();
                 System.out.print(T.data+" ");
                 while(T!=null){
                     if(T.lchild!=null){
-                        System.out.print(T.data+" ");
+                        System.out.print(T.lchild.data+" ");
                     }
                     if(T.rchild!=null){
                         S.push(T.rchild);
@@ -38,6 +38,7 @@ public class BiTree {
                     T=T.lchild;
                 }
             }
+
         }
     }
     public void inRootTraverse(BiTreeNode T){
@@ -48,17 +49,17 @@ public class BiTree {
         }
     }
     public void inRootTraverse() throws Exception{
-        BiTreeNode T =root;
+        BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
-            S.push(T);
+            S.push(T);//根结点入栈
             while(!S.isEmpty()){
                 while(S.peek()!=null){
                     S.push(((BiTreeNode)S.peek()).lchild);
                 }
-                S.pop();//退出空节点
+                S.pop();
                 if(!S.isEmpty()){
-                    T=(BiTreeNode)S.pop();//
+                    T=(BiTreeNode)S.pop();
                     System.out.print(T.data+" ");
                     S.push(T.rchild);
                 }
@@ -86,7 +87,7 @@ public class BiTree {
         if(T!=null){
             LinkStack S=new LinkStack();
             S.push(T);
-            Boolean flag;
+            boolean flag;
             BiTreeNode p=null;
             while(!S.isEmpty()){
                 while(S.peek()!=null){
@@ -96,10 +97,10 @@ public class BiTree {
                 while(!S.isEmpty()){
                     T=(BiTreeNode)S.peek();
                     if(T.rchild==null||T.rchild==p){
-                        System.out.print(T.data+" ");
                         S.pop();
-                        p=T;
+                        System.out.print(T.data+" ");
                         flag=true;
+                        p=T;
                     }
                     else{
                         S.push(T.rchild);
@@ -107,7 +108,6 @@ public class BiTree {
                     }
                     if(!flag){
                         break;
-
                     }
                 }
             }
