@@ -65,6 +65,8 @@ class Circle{
         else{
             kid.prior=last;
             kid.next=last.next;
+            last.next.prior=kid;
+            last.next=kid;
             last=kid;
         }
 
@@ -102,19 +104,19 @@ class Circle{
 public class KillGame {
     public static void main(String[] args){
         Circle test=new Circle(500);
-        //System.out.println(test.getHead().getNumber());
-        //System.out.println(test.getLast().getNumber());
-        int count=0;
+      //  System.out.println(test.getHead().next.number);
+      //  System.out.println(test.getLast().getNumber());
+        int count=1;
         int counttotle=1;
         LittleKid p=test.getHead();
         while(counttotle<500){
-            p=p.next;
-            count++;
             if(count==3){
                 test.remove(p);
                 count=0;
                 counttotle++;
             }
+            p=p.next;
+            count++;
         }
         System.out.println(test.getHead().getNumber());
     }
