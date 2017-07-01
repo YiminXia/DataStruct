@@ -1,6 +1,7 @@
-package com.sunlands.xiayimin.Queue;
+package com.sunlands.xiayimin.Queue.Example;
 
 import com.sunlands.xiayimin.List.SqList;
+import com.sunlands.xiayimin.Queue.LinkQueue;
 
 public class Example3_5 {
 

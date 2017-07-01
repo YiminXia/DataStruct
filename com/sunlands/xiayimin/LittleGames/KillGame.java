@@ -109,7 +109,7 @@ public class KillGame {
         int count=1;
         int counttotle=1;
         LittleKid p=test.getHead();
-        while(counttotle<500){
+        while(counttotle<500){//这样会删除操作会执行499次
             if(count==3){
                 test.remove(p);
                 count=0;
