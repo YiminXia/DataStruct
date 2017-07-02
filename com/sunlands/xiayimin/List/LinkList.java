@@ -15,6 +15,10 @@ public class LinkList implements IList{
     public LinkList(int n,boolean order)throws Exception{
         this();
         if(order){
+            create1(n);
+        }
+        else{
+            create2(n);
         }
     }
     //使用尾插法顺序建立单链表，其中n为单链表的结点个数
@@ -117,7 +121,9 @@ public class LinkList implements IList{
          Node p=head.next;
         while(p!=null){
             System.out.print(p.data+" ");
+            p=p.next;
         }
+
         System.out.println();
     }
 }
