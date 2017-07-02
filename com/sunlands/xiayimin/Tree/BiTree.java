@@ -15,7 +15,7 @@ public class BiTree {
     }
     public void preRootTraverse(BiTreeNode T){
         if(T!=null){
-            System.out.print(T.data+" ");
+            System.out.println(T.data);
             preRootTraverse(T.lchild);
             preRootTraverse(T.rchild);
         }
@@ -24,11 +24,11 @@ public class BiTree {
         BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
-            S.push(T);
-            while(!S.isEmpty()){
-                T=(BiTreeNode)S.pop();
-                System.out.print(T.data+" ");
-                while(T!=null){//容易卡住的地方
+            S.push(T);//根节点入栈
+            while(!S.isEmpty()){//栈里面的元素都是没有访问过得，所以一旦栈空了就代表便利结束了
+                T=(BiTreeNode)S.pop();//栈首结点出栈，
+                System.out.print(T.data+" ");//访问栈首结点
+                while(T!=null){//
                     if(T.lchild!=null){
                         System.out.print(T.lchild.data+" ");
                     }
@@ -51,18 +51,19 @@ public class BiTree {
         BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
-            S.push(T);//根结点入栈
+            S.push(T);//根节点入栈
             while(!S.isEmpty()){
                 while(S.peek()!=null){
                     S.push(((BiTreeNode)S.peek()).lchild);
                 }
-                S.pop();
+                S.pop();//空节点退栈
                 if(!S.isEmpty()){
                     T=(BiTreeNode)S.pop();
                     System.out.print(T.data+" ");
-                    S.push(T.rchild);
+                    S.push(T.rchild);//右结点
                 }
             }
+
         }
     }
     public void postRootTraverse(BiTreeNode T){
@@ -73,13 +74,21 @@ public class BiTree {
         }
     }
 
+    public BiTreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(BiTreeNode root) {
+        this.root = root;
+    }
+
     public void postRootTraverse()throws Exception{
         BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
-            S.push(T);
-            boolean flag;
-            BiTreeNode p=null;
+            S.push(T);//根结点入栈
+            Boolean flag;//访问标志
+            BiTreeNode p=null;//访问结点
             while(!S.isEmpty()){
                 while(S.peek()!=null){
                     S.push(((BiTreeNode)S.peek()).lchild);
@@ -88,10 +97,10 @@ public class BiTree {
                 while(!S.isEmpty()){
                     T=(BiTreeNode)S.peek();
                     if(T.rchild==null||T.rchild==p){
-                        S.pop();
                         System.out.print(T.data+" ");
-                        flag=true;
+                        S.pop();
                         p=T;
+                        flag=true;
                     }
                     else{
                         S.push(T.rchild);
@@ -104,29 +113,7 @@ public class BiTree {
             }
         }
     }
-    public void levelBiTreeTraverse()throws Exception{
-        BiTreeNode T=root;
-        if(T!=null){
-            LinkQueue Q=new LinkQueue();
-            Q.offer(T);//根节点入队
-            while(!Q.isEmpty()){
-                T=(BiTreeNode)Q.poll();
-                System.out.print(T.data+" ");
-                if(T.lchild!=null){
-                    Q.offer(T.lchild);
-                }
-                if(T.rchild!=null){
-                    Q.offer(T.rchild);
-                }
-            }
-        }
-    }
-    public BiTreeNode getRoot() {
-        return root;
-    }
 
-    public void setRoot(BiTreeNode root) {
-        this.root = root;
-    }
+
 }
 
