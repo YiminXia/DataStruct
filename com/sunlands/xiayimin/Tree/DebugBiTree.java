@@ -52,9 +52,10 @@ public class DebugBiTree {
         biTree.postRootTraverse(biTree.getRoot());
         System.out.println();
         System.out.println("--------------");
-
+        /*
         System.out.println("层次遍历：");
         biTree.levelBiTreeTraverse();
+        */
     }
 
 

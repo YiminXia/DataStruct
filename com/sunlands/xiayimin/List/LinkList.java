@@ -62,14 +62,14 @@ public class LinkList implements IList{
     public Object get(int i) throws Exception {//按位序号查找，其中i的取值范围是   0<=i<=n-1,主要思想是找到指向改结点的指针。
         Node p=head.next;//p指向首结点
         int count=0;     //count为计数器
-        while(p!=null||count<i){//0到i，一共有i+1数，指针初始化在0头上，想把指针移动到i头上，需要移动i次，也就是说循环i次
+        while(p!=null&&count<i){//0到i，一共有i+1数，指针初始化在0头上，想把指针移动到i头上，需要移动i次，也就是说循环i次
             p=p.next;
             count++;
         }
         if(count>i||p==null){
             throw new Exception("元素不存在");
         }
-        return p;
+        return p.data;
     }
 
     @Override
