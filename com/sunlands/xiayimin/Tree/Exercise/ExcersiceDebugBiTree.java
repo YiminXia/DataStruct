@@ -35,6 +35,7 @@ public class ExcersiceDebugBiTree {
         com.sunlands.xiayimin.Tree.Exercise.ExcerciseBiTree biTree =debugBiTree.createBiTree();
         BiTreeNode root = biTree.getRoot();
 
+        System.out.println("--------------");
         System.out.println("先根遍历：");
         biTree.preRootTraverse(biTree.getRoot());
         System.out.println();
@@ -49,14 +50,13 @@ public class ExcersiceDebugBiTree {
         System.out.println();
         System.out.println("--------------");
 
-        /**
         System.out.println("后根遍历：");
         biTree.postRootTraverse();
         System.out.println();
         biTree.postRootTraverse(biTree.getRoot());
         System.out.println();
         System.out.println("--------------");
-
+        /**
         System.out.println("层次遍历：");
         biTree.levelBiTreeTraverse();
          */

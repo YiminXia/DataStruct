@@ -79,11 +79,53 @@ public class ExcerciseBiTree {
                 linkStack.push(((BiTreeNode)linkStack.peek()).lchild);
             }
             linkStack.pop();
-            if(!linkStack.isEmpty()){//while的判断条件
+            if(!linkStack.isEmpty()){//if的判断条件
                 p=(BiTreeNode)linkStack.pop();
                 System.out.print(p.data+" ");
                 linkStack.push(p.rchild);
             }
         }
     }
+    /**
+     *
+     */
+    public void postRootTraverse(BiTreeNode root){
+        if(root!=null){
+            postRootTraverse(root.lchild);
+            postRootTraverse(root.rchild);
+            System.out.print(root.data+" ");
+        }
+    }
+    /**
+     *
+     */
+    public void postRootTraverse()throws Exception{
+        BiTreeNode p=root;
+        LinkStack linkStack=new LinkStack();
+        linkStack.push(p);
+        boolean flag;
+        BiTreeNode t=null;
+        while(!linkStack.isEmpty()){
+            while(linkStack.peek()!=null){
+                linkStack.push(((BiTreeNode)linkStack.peek()).lchild);
+            }
+            linkStack.pop();
+            while(!linkStack.isEmpty()){
+                p=(BiTreeNode)linkStack.peek();
+                if(p.rchild==null||p.rchild==t){
+                    System.out.print(p.data+" ");
+                    linkStack.pop();
+                    t=p;
+                    flag=true;
+                }else{
+                    linkStack.push(p.rchild);
+                    flag=false;
+                }
+                if(!flag){
+                    break;
+                }
+            }
+        }
+    }
+
 }
