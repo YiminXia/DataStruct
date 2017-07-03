@@ -101,31 +101,32 @@ public class ExcerciseBiTree {
      */
     public void postRootTraverse()throws Exception{
         BiTreeNode p=root;
-        LinkStack linkStack=new LinkStack();
-        linkStack.push(p);
-        boolean flag;
-        BiTreeNode t=null;
-        while(!linkStack.isEmpty()){
-            while(linkStack.peek()!=null){
-                linkStack.push(((BiTreeNode)linkStack.peek()).lchild);
-            }
-            linkStack.pop();
+        if(p!=null){
+            LinkStack linkStack=new LinkStack();
+            linkStack.push(p);
+            boolean flag;
+            BiTreeNode t=null;
             while(!linkStack.isEmpty()){
-                p=(BiTreeNode)linkStack.peek();
-                if(p.rchild==null||p.rchild==t){
-                    System.out.print(p.data+" ");
-                    linkStack.pop();
-                    t=p;
-                    flag=true;
-                }else{
-                    linkStack.push(p.rchild);
-                    flag=false;
+                while(linkStack.peek()!=null){
+                    linkStack.push(((BiTreeNode)linkStack.peek()).lchild);
                 }
-                if(!flag){
-                    break;
+                linkStack.pop();
+                while(!linkStack.isEmpty()){
+                    p=(BiTreeNode)linkStack.peek();
+                    if(p.rchild==null||p.rchild==t){
+                        System.out.print(p.data+" ");
+                        linkStack.pop();
+                        t=p;
+                        flag=true;
+                    }else{
+                        linkStack.push(p.rchild);
+                        flag=false;
+                    }
+                    if(!flag){
+                        break;
+                    }
                 }
             }
         }
     }
-
 }

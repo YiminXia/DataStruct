@@ -20,7 +20,7 @@ public class BiTree {
             preRootTraverse(T.rchild);
         }
     }
-    public void preRootTraverse()throws Exception{
+    public void preRootTraverse()throws Exception{//先根遍历只有右孩子入栈，根节点与左孩子，都是直接访问了
         BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
@@ -47,7 +47,7 @@ public class BiTree {
             inRootTraverse(T.rchild);
         }
     }
-    public void inRootTraverse() throws Exception{
+    public void inRootTraverse() throws Exception{//中根遍历，
         BiTreeNode T=root;
         if(T!=null){
             LinkStack S=new LinkStack();
@@ -57,7 +57,7 @@ public class BiTree {
                     S.push(((BiTreeNode)S.peek()).lchild);
                 }
                 S.pop();//空节点退栈
-                if(!S.isEmpty()){//while的判断条件,老是卡住
+                if(!S.isEmpty()){//if的判断条件,老是卡(qia)住
                     T=(BiTreeNode)S.pop();
                     System.out.print(T.data+" ");
                     S.push(T.rchild);//右结点
