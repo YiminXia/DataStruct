@@ -4,59 +4,70 @@ import com.sunlands.xiayimin.List.Node;
  * Created by sunlandsxym on 2017/6/24.
  */
 public class LinkStack implements IStack{
-    private Node top;
+    private Node top;//栈顶元素的引用
 
-    //将栈置空
+    /**
+     * 将栈置空
+     */
     @Override
     public void clear() {
         top=null;
     }
 
+    /**
+     * 判断链栈是否为空
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return top==null;
     }
 
-
-    //求链栈的长度
+    /**
+     * 求链栈的长度
+     * @return
+     */
     @Override
     public int length() {
+        int count=0;
         Node p=top;
-        int length=0;
         while(p!=null){
-            p=p.next;
-            length++;
+            count++;
+            p=p.next;//p初始化指向栈顶元素，当p被移动到指向null时候，指针p移动了整个栈的长度，也就是循环了长度的次数
         }
-        return length;
+        return count;
     }
 
+    /**
+     * 取栈顶元素，并返回其值
+     * @return
+     */
     @Override
     public Object peek() {
-        if(!isEmpty()){
-            return top.data;
-        }
-        else{
+        if(isEmpty()){
             return null;
         }
+        else{
+            return top.data;
+        }
     }
-    //入栈
+
     @Override
     public void push(Object x) throws Exception {
-        Node p=new Node(x);
-        p.next=top;
-        top=p;
-
+        Node node=new Node(x);
+        node.next=top;
+        top=node;
     }
-   //出栈
+
     @Override
-    public Object pop() {
-         if(isEmpty()){
-             return null;
-         }
-         else{
-             Node p=top;
-             top=top.next;
-             return p.data;
-         }
+    public Object pop() throws Exception {
+        if(isEmpty()){
+            throw new Exception("栈为空");
+        }
+        else{
+            Node p=top;
+            top=top.next;
+            return p.data;
+        }
     }
 }

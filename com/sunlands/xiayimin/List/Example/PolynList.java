@@ -42,9 +42,9 @@ public class PolynList extends LinkList {
         }
     }
     public PolynList addPolynList(PolynList LA,PolynList LB){
-        Node pa=LA.head.next;
-        Node pb=LB.head.next;
-        Node p=LA.head;
+        Node pa=LA.head.next;//指向LA的首结点
+        Node pb=LB.head.next;//指向LB的首结点
+        Node p=LA.head;//指向LA的头结点
         while(pa!=null&&pb!=null){
             PolynNode a=(PolynNode)pa.data;
             PolynNode b=(PolynNode)pb.data;
