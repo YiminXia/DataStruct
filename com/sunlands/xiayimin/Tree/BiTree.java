@@ -1,4 +1,5 @@
 package com.sunlands.xiayimin.Tree;
+
 import com.sunlands.xiayimin.Queue.LinkQueue;
 import com.sunlands.xiayimin.Stack.LinkStack;
 /**
@@ -15,7 +16,7 @@ public class BiTree {
     }
     public void preRootTraverse(BiTreeNode T){
         if(T!=null){
-            System.out.println(T.data);
+            System.out.print(T.data+" ");
             preRootTraverse(T.lchild);
             preRootTraverse(T.rchild);
         }
@@ -43,7 +44,7 @@ public class BiTree {
     public void inRootTraverse(BiTreeNode T){
         if(T!=null){
             inRootTraverse(T.lchild);
-            System.out.println(T.data);
+            System.out.print(T.data+" ");
             inRootTraverse(T.rchild);
         }
     }
@@ -56,11 +57,11 @@ public class BiTree {
                 while(S.peek()!=null){
                     S.push(((BiTreeNode)S.peek()).lchild);
                 }
-                S.pop();//空节点退栈
+                S.pop();//空节点退栈，
                 if(!S.isEmpty()){
                     T=(BiTreeNode)S.pop();
-                    System.out.print(T.data+" ");
-                    S.push(T.rchild);//右结点
+                    System.out.print(T.data+" ");//只有这里一个访问语句，所以必定存在，空栈入栈一个右孩子null的情况。
+                    S.push(T.rchild);//右结点入栈，此时T的右孩子是一个null，而且栈中最后一个元素已经访问了。
                 }
             }
 
@@ -70,7 +71,7 @@ public class BiTree {
         if(T!=null){
             postRootTraverse(T.lchild);
             postRootTraverse(T.rchild);
-            System.out.println(T.data);
+            System.out.print(T.data+" ");
         }
     }
 
@@ -114,6 +115,24 @@ public class BiTree {
         }
     }
 
+    /**
+     * 层次遍历二叉树
+     */
+    public void levelBiTreeTraverse()throws Exception{
+        LinkQueue linkQueue=new LinkQueue();
+        BiTreeNode p=root;
+        linkQueue.offer(p);
+        while(!linkQueue.isEmpty()){
+            p=(BiTreeNode)linkQueue.poll();
+            System.out.print(p.data+" ");
+            if(p.lchild!=null){
+                linkQueue.offer(p.lchild);
+            }
+            if(p.rchild!=null){
+                linkQueue.offer(p.rchild);
+            }
+        }
+    }
 
 }
 

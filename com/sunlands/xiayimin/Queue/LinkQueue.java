@@ -5,12 +5,13 @@ import com.sunlands.xiayimin.List.Node;
  */
 public class LinkQueue implements IQueue {
     private Node front;//队首指针
+
     private Node rear;//队尾指针
 
-    //链队列类的构造函数
-    public LinkQueue(){
-        front=rear=null;
-    }
+    //链队列类的
+    //public LinkQueue(){
+    //    front=rear=null;
+    //}
 
     //链队列置空
     @Override
@@ -54,7 +55,7 @@ public class LinkQueue implements IQueue {
             rear=p;
         }
     }
-   //出队，出队绝大部分情况只涉及front一个指针的操作，只有队列只有一个元素的之后设计两个指针的操作。
+   //出队，出队绝大部分情况只涉及front一个指针的操作，只有队列只有一个元素的时候涉及到两个指针的操作。
     @Override
     public Object poll() {
         if(front!=null){//链队列不空
@@ -66,5 +67,20 @@ public class LinkQueue implements IQueue {
             return p.data;
         }
         else return null;
+    }
+    public Node getFront() {
+        return front;
+    }
+
+    public void setFront(Node front) {
+        this.front = front;
+    }
+
+    public Node getRear() {
+        return rear;
+    }
+
+    public void setRear(Node rear) {
+        this.rear = rear;
     }
 }
