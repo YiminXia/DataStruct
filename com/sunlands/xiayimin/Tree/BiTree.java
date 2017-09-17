@@ -9,10 +9,10 @@ public class BiTree {
     private BiTreeNode root;//树的根节点
 
     public BiTree(){     //无参的构造函数，构造一棵空树
-        this.root=null;
+        this.root = null;
     }
     public BiTree(BiTreeNode root){//构造一棵树
-        this.root=root;
+        this.root = root;
     }
     public void preRootTraverse(BiTreeNode T){
         if(T!=null){
@@ -22,21 +22,21 @@ public class BiTree {
         }
     }
     public void preRootTraverse()throws Exception{
-        BiTreeNode T=root;
-        if(T!=null){
-            LinkStack S=new LinkStack();
-            S.push(T);//根节点入栈
-            while(!S.isEmpty()){//栈里面的元素都是没有访问过得，所以一旦栈空了就代表便利结束了
-                T=(BiTreeNode)S.pop();//栈首结点出栈，
-                System.out.print(T.data+" ");//访问栈首结点
-                while(T!=null){//
-                    if(T.lchild!=null){
-                        System.out.print(T.lchild.data+" ");
+        BiTreeNode T = root;
+        if (T != null){
+            LinkStack S = new LinkStack();
+            S.push(T); //根节点入栈
+            while (!S.isEmpty()){ //栈里面的元素都是没有访问过得，所以一旦栈空了就代表便利结束了
+                T = (BiTreeNode) S.pop(); //栈首结点出栈，
+                System.out.print(T.data + " "); //访问栈首结点
+                while (T != null){ //
+                    if (T.lchild != null){
+                        System.out.print(T.lchild.data + " ");
                     }
-                    if(T.rchild!=null){
+                    if (T.rchild != null){
                         S.push(T.rchild);
                     }
-                    T=T.lchild;
+                    T = T.lchild;
                 }
             }
         }
@@ -49,65 +49,67 @@ public class BiTree {
         }
     }
     public void inRootTraverse() throws Exception{
-        BiTreeNode T=root;
-        if(T!=null){
-            LinkStack S=new LinkStack();
-            S.push(T);//根节点入栈
-            while(!S.isEmpty()){
-                while(S.peek()!=null){
-                    S.push(((BiTreeNode)S.peek()).lchild);
+        BiTreeNode T = root;
+        if (T != null) {
+            LinkStack S = new LinkStack();
+            S.push(T); //根节点入栈
+            while (!S.isEmpty()){
+                while (S.peek() != null){ //将栈顶结点的左孩子节点相继入栈
+                    S.push(((BiTreeNode) S.peek()).lchild);
                 }
-                S.pop();//空节点退栈，
-                if(!S.isEmpty()){
-                    T=(BiTreeNode)S.pop();
-                    System.out.print(T.data+" ");//只有这里一个访问语句，所以必定存在，空栈入栈一个右孩子null的情况。
-                    S.push(T.rchild);//右结点入栈，此时T的右孩子是一个null，而且栈中最后一个元素已经访问了。
+                S.pop(); //空节点退栈，
+                if (!S.isEmpty()){
+                    T = (BiTreeNode) S.pop();
+                    System.out.print(T.data + " "); //只有这里一个访问语句，所以必定存在，空栈入栈一个右孩子null的情况。
+                    S.push(T.rchild); //右结点入栈，此时T的右孩子是一个null，而且栈中最后一个元素已经访问了。
                 }
             }
 
         }
     }
-    public void postRootTraverse(BiTreeNode T){
-        if(T!=null){
+
+    /**
+     * 二叉树遍历递归算法
+     *
+     * @param T 二叉树结点
+     */
+    public void postRootTraverse(BiTreeNode T) {
+        if (T != null) {
             postRootTraverse(T.lchild);
             postRootTraverse(T.rchild);
-            System.out.print(T.data+" ");
+            System.out.print(T.data + " ");
         }
     }
-
-    public BiTreeNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(BiTreeNode root) {
-        this.root = root;
-    }
-
+    /**
+     * 后根遍历非递归算法
+     *
+     * @throws Exception 异常
+     */
     public void postRootTraverse()throws Exception{
-        BiTreeNode T=root;
-        if(T!=null){
-            LinkStack S=new LinkStack();
-            S.push(T);//根结点入栈
-            Boolean flag;//访问标志
-            BiTreeNode p=null;//访问结点
-            while(!S.isEmpty()){
-                while(S.peek()!=null){
-                    S.push(((BiTreeNode)S.peek()).lchild);
+        BiTreeNode T = root;
+        if (T != null){
+            LinkStack S = new LinkStack();
+            S.push(T);  //根结点入栈
+            Boolean flag;  //访问标志
+            BiTreeNode p = null; //访问结点
+            while (!S.isEmpty()){
+                while (S.peek() != null){
+                    S.push(((BiTreeNode) S.peek()).lchild); //将栈顶元素的左孩子相继入栈
                 }
-                S.pop();
-                while(!S.isEmpty()){
-                    T=(BiTreeNode)S.peek();
-                    if(T.rchild==null||T.rchild==p){
-                        System.out.print(T.data+" ");
+                S.pop(); //空节点退栈
+                while (!S.isEmpty()){
+                    T = (BiTreeNode) S.peek();
+                    if (T.rchild == null || T.rchild == p) {
+                        System.out.print(T.data + " ");
                         S.pop();
-                        p=T;
-                        flag=true;
+                        p = T;
+                        flag = true;
                     }
                     else{
                         S.push(T.rchild);
-                        flag=false;
+                        flag = false;
                     }
-                    if(!flag){
+                    if (!flag) { // flag == false 即跳出当前while循环
                         break;
                     }
                 }
@@ -132,6 +134,15 @@ public class BiTree {
                 linkQueue.offer(p.rchild);
             }
         }
+    }
+
+
+    public BiTreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(BiTreeNode root) {
+        this.root = root;
     }
 
 }
