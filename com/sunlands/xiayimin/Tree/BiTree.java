@@ -6,7 +6,7 @@ import com.sunlands.xiayimin.Stack.LinkStack;
  * Created by sunlandsxym on 2017/6/24.
  */
 public class BiTree {
-    private BiTreeNode root;//树的根节点
+    private BiTreeNode root; //树的根节点
 
     public BiTree(){     //无参的构造函数，构造一棵空树
         this.root = null;
@@ -23,17 +23,17 @@ public class BiTree {
     }
     public void preRootTraverse()throws Exception{
         BiTreeNode T = root;
-        if (T != null){
+        if (T != null) {
             LinkStack S = new LinkStack();
-            S.push(T); //根节点入栈
-            while (!S.isEmpty()){ //栈里面的元素都是没有访问过得，所以一旦栈空了就代表便利结束了
-                T = (BiTreeNode) S.pop(); //栈首结点出栈，
-                System.out.print(T.data + " "); //访问栈首结点
-                while (T != null){ //
-                    if (T.lchild != null){
+            S.push(T);
+            while (!S.isEmpty()) {
+                T = (BiTreeNode) S.pop();
+                System.out.print(T.data + " ");
+                while (T != null) {
+                    if (T.lchild != null) {
                         System.out.print(T.lchild.data + " ");
                     }
-                    if (T.rchild != null){
+                    if (T.rchild != null) {
                         S.push(T.rchild);
                     }
                     T = T.lchild;
@@ -50,21 +50,20 @@ public class BiTree {
     }
     public void inRootTraverse() throws Exception{
         BiTreeNode T = root;
-        if (T != null) {
-            LinkStack S = new LinkStack();
-            S.push(T); //根节点入栈
-            while (!S.isEmpty()){
-                while (S.peek() != null){ //将栈顶结点的左孩子节点相继入栈
-                    S.push(((BiTreeNode) S.peek()).lchild);
-                }
-                S.pop(); //空节点退栈，
-                if (!S.isEmpty()){
-                    T = (BiTreeNode) S.pop();
-                    System.out.print(T.data + " "); //只有这里一个访问语句，所以必定存在，空栈入栈一个右孩子null的情况。
-                    S.push(T.rchild); //右结点入栈，此时T的右孩子是一个null，而且栈中最后一个元素已经访问了。
-                }
-            }
-
+        if (T != null){
+           LinkStack S =  new LinkStack();
+           S.push(T);
+           while (!S.isEmpty()) {
+               while (S.peek() != null) {
+                   S.push(((BiTreeNode) S.peek()).lchild);
+               }
+               S.pop();
+               if (!S.isEmpty()) {
+                   T = (BiTreeNode) S.pop();
+                   System.out.print(T.data + " ");
+                   S.push(T.rchild);
+               }
+           }
         }
     }
 
@@ -86,35 +85,34 @@ public class BiTree {
      * @throws Exception 异常
      */
     public void postRootTraverse()throws Exception{
-        BiTreeNode T = root;
-        if (T != null){
-            LinkStack S = new LinkStack();
-            S.push(T);  //根结点入栈
-            Boolean flag;  //访问标志
-            BiTreeNode p = null; //访问结点
-            while (!S.isEmpty()){
-                while (S.peek() != null){
-                    S.push(((BiTreeNode) S.peek()).lchild); //将栈顶元素的左孩子相继入栈
-                }
-                S.pop(); //空节点退栈
-                while (!S.isEmpty()){
-                    T = (BiTreeNode) S.peek();
-                    if (T.rchild == null || T.rchild == p) {
-                        System.out.print(T.data + " ");
-                        S.pop();
-                        p = T;
-                        flag = true;
-                    }
-                    else{
-                        S.push(T.rchild);
-                        flag = false;
-                    }
-                    if (!flag) { // flag == false 即跳出当前while循环
-                        break;
-                    }
-                }
-            }
-        }
+       BiTreeNode T = root;
+       if (T != null) {
+           LinkStack S = new LinkStack();
+           S.push(T);
+           boolean flag;
+           BiTreeNode p = null;
+           while (!S.isEmpty()) {
+               while (S.peek() != null) {
+                   S.push(((BiTreeNode) S.peek()).lchild);
+               }
+               S.pop();
+               while (!S.isEmpty()) {
+                   T = (BiTreeNode) S.peek();
+                   if (T.rchild == null || T.rchild == p) {
+                       System.out.print(T.data);
+                       S.pop();
+                       flag = true;
+                       p = T;
+                   } else {
+                       S.push(T.rchild);
+                       flag = false;
+                   }
+                   if (!flag){
+                       break;
+                   }
+               }
+           }
+       }
     }
 
     /**
